@@ -1,0 +1,58 @@
+Questão 1
+a) 
+select distinct(name) as host
+   
+  from delivery.AB_NYC_2019
+ 
+group by room_type
+
+b)
+select sum(number_of_reviews) as total_reviews, 
+       
+       avg(reviews_per_month) as media_reviews
+	
+from 
+delivery.AB_NYC_2019 where 
+neighbourhood_group = 'Brooklyn'
+
+
+c)
+select availability as dias_disponiveis,
+	   
+       min(price) as preco_minimo,
+       
+       max(price) as preco_maximo,
+avg(price) as preco_medio
+    
+from delivery.AB_NYC_2019   
+    
+where availability > 0 
+and name like '%room%'
+    
+group by availability order by availability
+
+-------------------------------------------------------------------
+Questão 2
+Esta na pasta Moidal arquivo python load.py
+
+-------------------------------------------------------------------
+Questão 3
+ANALISE DE VARIAÇAÕ DE PRECO DE LOCAÇÃO DOS HOST
+1) Primeiro passo é mapear um baseline. Existe alguma pesquisa ja feita nesse sentido pra que eu possa fazer depois um comparativo.
+ 
+2) Vou identificar quais fontes de dados irei usar. Como queremos saber a variação do tipo de aluguel, dados como localização do imovel, tipo do imóvel (se é Apartamento, se é somente quarto, se é casa, se é loft). Outro fator importante é a vizinhança, pois sabe-se que bairros vizinhos a periferia ou próximos a bairros violentos ja tem uma diferenciação no preço. Dados também sobre área comum (se tem área de lazer privativa) é outro fator que pode impactar. Se esta ou não próximo a praias. Como não tenho todas as informações que necessito neste relatório, iria procurar outras fontes de dados para mapear melhor o dataset que tenho disponivel.
+
+3) Com os dados em mãos, vamos carregar e verificar inconsistencias. Usaria o Pandas inicialmente para ter uma análise superficial dos dados e em seguida uma análise mais aprofundada com base nestes. No caso do nosso dataset identifiquei de início registros com valores 0 para o campo price. Como vamos trabalhar com variação dos campos de locação, é importante que tenhamos esse campo ajustado. Podemos corrigir esses dados obtendo a média do campo price nos baseando nestas mesmas regiões e dos registros faltantes aplicar a esses registros. 
+Identifiquei tambem campos que possuem valor nulos. Foram localizados também no campo 'name' = 16 registros, em 'host_name = 21', 'last_review = 10052', 'Reviews_per_mont' = 10052
+Observei que s registros nulos last_review = null, também são os mesmos que não possuem Reviews_per_mont ou seja, me parecem registros novos, por isso ainda não possuem vizualização. Inicialmente essas duas informações não tem peso relevante para nossa analise e estão corretas se sao registros novos não possuirem estas informações. Vamos tambem analisar nesse conjunto de dado os relacionamentos entre as fontes de dados existentes, fazer agrupamentos por exemplo por tipo e imovel
+
+4) Agora vamos criar nosso modelo. Vamos trabalhar com tecnica de classificação
+
+5) Agora vou fazer uma avaliação dos resultados obtidos usando como parametro meu baseline.
+
+6) E por fim apresentação do meu estudo.
+
+Pra esse estudo usaria o algoritmo SVM
+-------------------------------------------------------------------
+Questão 4
+Gráficos anexos - Utilizei o PowerBI
